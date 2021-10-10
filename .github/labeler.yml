@@ -1,0 +1,20 @@
+server:
+  - registry/src/**/*
+routes:
+  - registry/src/routes/**/*
+types:
+  - registry/src/types/**/*
+pages:
+  - registry/src/app/pages/**/*
+network:
+  - registry/src/network/**/*
+store:
+  - registry/src/store/**/*
+styles:
+  - registry/src/styles/**/*
+package:
+  - registry/package.json
+workflows:
+  - ./github/**/*
+tests:
+  - __tests__/**/*
