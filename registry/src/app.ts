@@ -6,7 +6,7 @@ import loggerMiddleWare from "./logger/morgan";
 import http from "http";
 import { notFound } from "./utils";
 
-connectToDb();
+// connectToDb();
 const app = express();
 const server = http.createServer(app);
 app.use(express.json());
