@@ -13,7 +13,7 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { GlobalStyle } from 'styles/global-styles';
 
 import { HomePage } from './pages/HomePage/Loadable';
-import { NotFoundPage } from './components/NotFoundPage/Loadable';
+import { NotFoundPage, Header } from './components';
 import { useTranslation } from 'react-i18next';
 
 export function App() {
@@ -21,13 +21,13 @@ export function App() {
   return (
     <BrowserRouter>
       <Helmet
-        titleTemplate="%s - React Boilerplate"
-        defaultTitle="React Boilerplate"
+        titleTemplate="%s - NPM-registry"
+        defaultTitle="NPM-registry"
         htmlAttributes={{ lang: i18n.language }}
       >
-        <meta name="description" content="A React Boilerplate application" />
+        <meta name="description" content="A NPM-registry application" />
       </Helmet>
-
+      <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route component={NotFoundPage} />
