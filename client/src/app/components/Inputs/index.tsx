@@ -11,6 +11,8 @@ import { useSearchSlice } from '../../slice';
 
 interface Props {
   setNpmPackage: React.SetStateAction<any>;
+  setShowSpinner;
+ setSpinnerError
 }
 
 export function Inputs(props: Props) {
@@ -21,7 +23,7 @@ export function Inputs(props: Props) {
   });
   const nameValueRef = React.useRef<HTMLInputElement>(null);
   const versionValueRef = React.useRef<HTMLInputElement>(null);
-  const { setNpmPackage } = props;
+  const { setNpmPackage, setShowSpinner, setSpinnerError } = props;
   const {
     actions: { addToHistory },
   } = useSearchSlice();
@@ -32,6 +34,7 @@ export function Inputs(props: Props) {
     const name = nameValueRef.current?.value;
     const version = versionValueRef.current?.value;
     try {
+      setShowSpinner(true)
       const allDependencies: IPackage[] = await publicFetch(
         `/package/getDependencies/${name}/${version}`,
       );
@@ -47,14 +50,18 @@ export function Inputs(props: Props) {
         setNpmPackage(newPackage);
         dispatch(addToHistory(newPackage))
       }
+      setShowSpinner(false)
     } catch ({ message }) {
+      setShowSpinner(false)
       if (message === 'Unexpected token N in JSON at position 0') {
         setNpmPackage({
           name,
           version,
           dependencies: [{ name: 'No dependencies', version: '', id: 1 }],
         });
-      } else console.log(message);
+      } else {
+        setSpinnerError(message)  
+        console.log(message);}
     }
   };
 
