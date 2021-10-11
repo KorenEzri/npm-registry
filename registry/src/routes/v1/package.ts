@@ -7,7 +7,7 @@ const packageRouter = Router();
 packageRouter.get("/getPackage/:name/:version", (req, res) =>
   withTryCatch(req, res, getPackage)
 );
-packageRouter.get("/getDependecies/:name/:version", (req, res) =>
+packageRouter.get("/getDependencies/:name/:version", (req, res) =>
   withTryCatch(req, res, getAllDependencies)
 );
 
